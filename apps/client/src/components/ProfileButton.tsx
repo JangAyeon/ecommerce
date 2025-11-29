@@ -1,0 +1,31 @@
+"use client";
+
+// import { UserButton } from "@clerk/nextjs";
+import { ShoppingBag } from "lucide-react";
+import { useRouter } from "next/navigation";
+
+const ProfileButton = () => {
+  const router = useRouter();
+
+  const handleProfile = () => {
+    // router.push("/orders");
+    console.log("Profile Button");
+  };
+  return (
+    <button onClick={handleProfile}>
+      <ShoppingBag className="w-4 h-4" />
+      Profile
+    </button>
+    // <UserButton>
+    //   <UserButton.MenuItems>
+    //     <UserButton.Action
+    //       label="See Orders"
+    //       labelIcon={<ShoppingBag className="w-4 h-4"/>}
+    //       onClick={() => router.push("/orders")}
+    //     />
+    //   </UserButton.MenuItems>
+    // </UserButton>
+  );
+};
+
+export default ProfileButton;
