@@ -3,7 +3,7 @@ import { OrderType, ProductType } from "@repo/types";
 // Mock Products Data
 export const mockProducts: ProductType[] = [
   {
-    id: 1,
+    id: "1",
     name: "Adidas CoreFit T-Shirt",
     shortDescription:
       "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
@@ -22,7 +22,7 @@ export const mockProducts: ProductType[] = [
     updatedAt: new Date(Date.now() - 86400000 * 5),
   },
   {
-    id: 2,
+    id: "2",
     name: "Puma Ultra Warm Zip",
     shortDescription:
       "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
@@ -37,7 +37,7 @@ export const mockProducts: ProductType[] = [
     updatedAt: new Date(Date.now() - 86400000 * 3),
   },
   {
-    id: 3,
+    id: "3",
     name: "Nike Air Essentials Pullover",
     shortDescription:
       "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
@@ -56,7 +56,7 @@ export const mockProducts: ProductType[] = [
     updatedAt: new Date(Date.now() - 86400000 * 2),
   },
   {
-    id: 4,
+    id: "4",
     name: "Nike Dri Flex T-Shirt",
     shortDescription:
       "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
@@ -71,7 +71,7 @@ export const mockProducts: ProductType[] = [
     updatedAt: new Date(Date.now() - 86400000 * 1),
   },
   {
-    id: 5,
+    id: "5",
     name: "Under Armour StormFleece",
     shortDescription:
       "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
@@ -90,7 +90,7 @@ export const mockProducts: ProductType[] = [
     updatedAt: new Date(),
   },
   {
-    id: 6,
+    id: "6",
     name: "Nike Air Max 270",
     shortDescription:
       "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
@@ -105,7 +105,7 @@ export const mockProducts: ProductType[] = [
     updatedAt: new Date(Date.now() - 86400000 * 1),
   },
   {
-    id: 7,
+    id: "7",
     name: "Nike Ultraboost Pulse",
     shortDescription:
       "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
@@ -120,7 +120,7 @@ export const mockProducts: ProductType[] = [
     updatedAt: new Date(),
   },
   {
-    id: 8,
+    id: "8",
     name: "Levi's Classic Denim",
     shortDescription:
       "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
@@ -140,20 +140,24 @@ export const mockProducts: ProductType[] = [
 export const getMockProductById = (
   id: number | string
 ): ProductType | undefined => {
-  return mockProducts.find((product) => product.id === Number(id));
+  return mockProducts.find((product) => product.id === String(id));
 };
 
 // Mock User Orders Data (with products field)
 export const mockUserOrders: OrderType[] = [
   {
+    id: "order_user_001",
     _id: "order_user_001",
     email: "customer@example.com",
+    phone: "+1234567890",
+    address: "123 Main St",
+    city: "New York",
     status: "success",
     amount: 15990, // $159.90
-    userId: "user_123",
+    total: 159.9,
     products: [
       {
-        id: 1,
+        id: "1",
         name: "Adidas CoreFit T-Shirt",
         shortDescription: "Lorem ipsum dolor sit amet",
         description: "Lorem ipsum dolor sit amet",
@@ -170,7 +174,7 @@ export const mockUserOrders: OrderType[] = [
         updatedAt: new Date(),
       },
       {
-        id: 2,
+        id: "2",
         name: "Puma Ultra Warm Zip",
         shortDescription: "Lorem ipsum dolor sit amet",
         description: "Lorem ipsum dolor sit amet",
@@ -184,17 +188,20 @@ export const mockUserOrders: OrderType[] = [
       },
     ],
     createdAt: new Date(Date.now() - 86400000 * 10), // 10 days ago
-    updatedAt: new Date(Date.now() - 86400000 * 10),
   },
   {
+    id: "order_user_002",
     _id: "order_user_002",
     email: "customer@example.com",
+    phone: "+1234567890",
+    address: "123 Main St",
+    city: "New York",
     status: "success",
     amount: 6990, // $69.90
-    userId: "user_123",
+    total: 69.9,
     products: [
       {
-        id: 3,
+        id: "3",
         name: "Nike Air Essentials Pullover",
         shortDescription: "Lorem ipsum dolor sit amet",
         description: "Lorem ipsum dolor sit amet",
@@ -212,17 +219,20 @@ export const mockUserOrders: OrderType[] = [
       },
     ],
     createdAt: new Date(Date.now() - 86400000 * 5), // 5 days ago
-    updatedAt: new Date(Date.now() - 86400000 * 5),
   },
   {
+    id: "order_user_003",
     _id: "order_user_003",
     email: "customer@example.com",
+    phone: "+1234567890",
+    address: "123 Main St",
+    city: "New York",
     status: "pending",
     amount: 2990, // $29.90
-    userId: "user_123",
+    total: 29.9,
     products: [
       {
-        id: 4,
+        id: "4",
         name: "Nike Dri Flex T-Shirt",
         shortDescription: "Lorem ipsum dolor sit amet",
         description: "Lorem ipsum dolor sit amet",
@@ -236,17 +246,20 @@ export const mockUserOrders: OrderType[] = [
       },
     ],
     createdAt: new Date(Date.now() - 86400000 * 2), // 2 days ago
-    updatedAt: new Date(Date.now() - 86400000 * 2),
   },
   {
+    id: "order_user_004",
     _id: "order_user_004",
     email: "customer@example.com",
+    phone: "+1234567890",
+    address: "123 Main St",
+    city: "New York",
     status: "success",
     amount: 12990, // $129.90
-    userId: "user_123",
+    total: 129.9,
     products: [
       {
-        id: 6,
+        id: "6",
         name: "Nike Air Max 270",
         shortDescription: "Lorem ipsum dolor sit amet",
         description: "Lorem ipsum dolor sit amet",
@@ -259,7 +272,7 @@ export const mockUserOrders: OrderType[] = [
         updatedAt: new Date(),
       },
       {
-        id: 7,
+        id: "7",
         name: "Nike Ultraboost Pulse",
         shortDescription: "Lorem ipsum dolor sit amet",
         description: "Lorem ipsum dolor sit amet",
@@ -273,6 +286,5 @@ export const mockUserOrders: OrderType[] = [
       },
     ],
     createdAt: new Date(Date.now() - 86400000 * 15), // 15 days ago
-    updatedAt: new Date(Date.now() - 86400000 * 15),
   },
 ];

@@ -69,7 +69,10 @@ const CardList = async ({ title }: { title: string }) => {
                   <Badge variant="secondary">{item.status}</Badge>
                 </CardContent>
                 <CardFooter className="p-0">
-                  ${(item.amount / 100).toFixed(2)}
+                  $
+                  {item.amount
+                    ? (item.amount / 100).toFixed(2)
+                    : item.total.toFixed(2)}
                 </CardFooter>
               </Card>
             ))}

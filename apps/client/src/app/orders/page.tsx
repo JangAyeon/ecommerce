@@ -43,7 +43,7 @@ const OrdersPage = async () => {
             </div>
             <div className="w-1/12">
               <span className="font-medium text-sm text-gray-500">Total</span>
-              <p>{order.amount / 100}</p>
+              <p>{order.amount ? order.amount / 100 : order.total}</p>
             </div>
             <div className="w-1/12">
               <span className="font-medium text-sm text-gray-500">Status</span>
@@ -63,7 +63,7 @@ const OrdersPage = async () => {
               </span>
               <p>
                 {order.products
-                  ?.map((product: OrderType["products"]) => product.name)
+                  ?.map((product) => product.name)
                   .join(", ") || "-"}
               </p>
             </div>
