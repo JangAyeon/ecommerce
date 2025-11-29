@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Categories from "./Categories";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
@@ -80,8 +81,14 @@ const ProductList = async ({
 
   return (
     <div className="w-full">
-      <Categories />
-      {params === "products" && <Filter />}
+      <Suspense fallback={<div className="h-20" />}>
+        <Categories />
+      </Suspense>
+      {params === "products" && (
+        <Suspense fallback={<div className="h-8" />}>
+          <Filter />
+        </Suspense>
+      )}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
