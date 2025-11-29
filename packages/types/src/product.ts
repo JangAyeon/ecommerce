@@ -1,7 +1,18 @@
-import type { Product, Category } from "@repo/product-db";
 import z from "zod";
 
-export type ProductType = Product;
+export type ProductType = {
+  id: string;
+  name: string;
+  shortDescription: string;
+  description: string;
+  price: number;
+  sizes: string[];
+  colors: string[];
+  images: Record<string, string>;
+  categorySlug: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+};
 
 export type ProductsType = ProductType[];
 
@@ -90,7 +101,11 @@ export const ProductFormSchema = z
     }
   );
 
-export type CategoryType = Category;
+export type CategoryType = {
+  id: string;
+  name: string;
+  slug: string;
+};
 
 export const CategoryFormSchema = z.object({
   name: z

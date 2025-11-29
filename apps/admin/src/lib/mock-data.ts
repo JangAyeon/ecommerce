@@ -104,101 +104,141 @@ export const mockUsers: User[] = [
 // Mock Orders Data
 export const mockOrders: OrderType[] = [
   {
+    id: "order_001",
     _id: "order_001",
     email: "john.doe@example.com",
+    phone: "+1234567890",
+    address: "123 Main St",
+    city: "New York",
     status: "success",
     amount: 15990, // $159.90
-    userId: "user_2abc123",
+    total: 159.90,
+    products: [],
     createdAt: new Date(Date.now() - 86400000 * 2),
-    updatedAt: new Date(Date.now() - 86400000 * 2),
   },
   {
+    id: "order_002",
     _id: "order_002",
     email: "jane.smith@example.com",
+    phone: "+1234567891",
+    address: "456 Oak Ave",
+    city: "Los Angeles",
     status: "success",
     amount: 8990, // $89.90
-    userId: "user_2def456",
+    total: 89.90,
+    products: [],
     createdAt: new Date(Date.now() - 86400000 * 5),
-    updatedAt: new Date(Date.now() - 86400000 * 5),
   },
   {
+    id: "order_003",
     _id: "order_003",
     email: "michael.j@example.com",
+    phone: "+1234567892",
+    address: "789 Pine Rd",
+    city: "Chicago",
     status: "pending",
     amount: 24990, // $249.90
-    userId: "user_2ghi789",
+    total: 249.90,
+    products: [],
     createdAt: new Date(Date.now() - 86400000 * 1),
-    updatedAt: new Date(Date.now() - 86400000 * 1),
   },
   {
+    id: "order_004",
     _id: "order_004",
     email: "emily.brown@example.com",
+    phone: "+1234567893",
+    address: "321 Elm St",
+    city: "Houston",
     status: "success",
     amount: 12990, // $129.90
-    userId: "user_2jkl012",
+    total: 129.90,
+    products: [],
     createdAt: new Date(Date.now() - 86400000 * 7),
-    updatedAt: new Date(Date.now() - 86400000 * 7),
   },
   {
+    id: "order_005",
     _id: "order_005",
     email: "david.wilson@example.com",
+    phone: "+1234567894",
+    address: "654 Maple Dr",
+    city: "Phoenix",
     status: "processing",
     amount: 6990, // $69.90
-    userId: "user_2mno345",
+    total: 69.90,
+    products: [],
     createdAt: new Date(Date.now() - 86400000 * 3),
-    updatedAt: new Date(Date.now() - 86400000 * 3),
   },
   {
+    id: "order_006",
     _id: "order_006",
     email: "sarah.davis@example.com",
+    phone: "+1234567895",
+    address: "987 Cedar Ln",
+    city: "Philadelphia",
     status: "success",
     amount: 17990, // $179.90
-    userId: "user_2pqr678",
+    total: 179.90,
+    products: [],
     createdAt: new Date(Date.now() - 86400000 * 4),
-    updatedAt: new Date(Date.now() - 86400000 * 4),
   },
   {
+    id: "order_007",
     _id: "order_007",
     email: "robert.miller@example.com",
+    phone: "+1234567896",
+    address: "147 Birch Way",
+    city: "San Antonio",
     status: "failed",
     amount: 9990, // $99.90
-    userId: "user_2stu901",
+    total: 99.90,
+    products: [],
     createdAt: new Date(Date.now() - 86400000 * 2),
-    updatedAt: new Date(Date.now() - 86400000 * 2),
   },
   {
+    id: "order_008",
     _id: "order_008",
     email: "lisa.anderson@example.com",
+    phone: "+1234567897",
+    address: "258 Spruce Ct",
+    city: "San Diego",
     status: "success",
     amount: 21990, // $219.90
-    userId: "user_2vwx234",
+    total: 219.90,
+    products: [],
     createdAt: new Date(Date.now() - 86400000 * 1),
-    updatedAt: new Date(Date.now() - 86400000 * 1),
   },
   {
+    id: "order_009",
     _id: "order_009",
     email: "john.doe@example.com",
+    phone: "+1234567890",
+    address: "123 Main St",
+    city: "New York",
     status: "success",
     amount: 4990, // $49.90
-    userId: "user_2abc123",
+    total: 49.90,
+    products: [],
     createdAt: new Date(Date.now() - 86400000 * 10),
-    updatedAt: new Date(Date.now() - 86400000 * 10),
   },
   {
+    id: "order_010",
     _id: "order_010",
     email: "jane.smith@example.com",
+    phone: "+1234567891",
+    address: "456 Oak Ave",
+    city: "Los Angeles",
     status: "pending",
     amount: 14990, // $149.90
-    userId: "user_2def456",
+    total: 149.90,
+    products: [],
     createdAt: new Date(Date.now() - 86400000 * 6),
-    updatedAt: new Date(Date.now() - 86400000 * 6),
   },
 ];
 
 // Mock Products Data (already exists in CardList, but will use here)
 export const mockProducts: ProductType[] = [
   {
-    id: 1,
+    id: "1",
     name: "Adidas CoreFit T-Shirt",
     shortDescription:
       "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
@@ -217,7 +257,7 @@ export const mockProducts: ProductType[] = [
     updatedAt: new Date(Date.now() - 86400000 * 5),
   },
   {
-    id: 2,
+    id: "2",
     name: "Puma Ultra Warm Zip",
     shortDescription:
       "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
@@ -232,7 +272,7 @@ export const mockProducts: ProductType[] = [
     updatedAt: new Date(Date.now() - 86400000 * 3),
   },
   {
-    id: 3,
+    id: "3",
     name: "Nike Air Essentials Pullover",
     shortDescription:
       "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
@@ -251,7 +291,7 @@ export const mockProducts: ProductType[] = [
     updatedAt: new Date(Date.now() - 86400000 * 2),
   },
   {
-    id: 4,
+    id: "4",
     name: "Nike Dri Flex T-Shirt",
     shortDescription:
       "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
@@ -266,7 +306,7 @@ export const mockProducts: ProductType[] = [
     updatedAt: new Date(Date.now() - 86400000 * 1),
   },
   {
-    id: 5,
+    id: "5",
     name: "Under Armour StormFleece",
     shortDescription:
       "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
