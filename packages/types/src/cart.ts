@@ -1,6 +1,6 @@
 import z from "zod";
 import { ProductType } from "./product";
-
+// ===============================LEGACY========================================
 export type CartItemType = {
   id: string;
   name: string;

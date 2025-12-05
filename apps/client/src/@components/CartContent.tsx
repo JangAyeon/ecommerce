@@ -1,8 +1,8 @@
 "use client";
 
-import ShippingForm from "@/components/ShippingForm";
+// import ShippingForm from "@/components/ShippingForm";
 // import StripePaymentForm from "@/components/_StripePaymentForm";
-import useCartStore from "@/stores/cartStore";
+import useCartStore from "@/@stores/cartStore";
 import { ShippingFormInputs } from "@repo/types";
 import { ArrowRight, Trash2 } from "lucide-react";
 import Image from "next/image";
@@ -32,7 +32,7 @@ const CartContent = () => {
   const activeStep = parseInt(searchParams.get("step") || "1");
 
   const { cart, removeFromCart } = useCartStore();
-  
+
   return (
     <div className="flex flex-col gap-8 items-center justify-center mt-12">
       {/* TITLE */}
@@ -118,7 +118,8 @@ const CartContent = () => {
               </div>
             ))
           ) : activeStep === 2 ? (
-            <ShippingForm setShippingForm={setShippingForm} />
+            // <ShippingForm setShippingForm={setShippingForm} />
+            <div>ShippingForm</div>
           ) : activeStep === 3 && shippingForm ? (
             // <StripePaymentForm shippingForm={shippingForm} />
             <div>StripePaymentForm</div>
@@ -176,4 +177,3 @@ const CartContent = () => {
 };
 
 export default CartContent;
-

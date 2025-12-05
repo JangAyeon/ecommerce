@@ -1,17 +1,17 @@
-import ProductInteraction from "@/components/ProductInteraction";
+import ProductInteraction from "@/@components/ProductInteraction";
 import { ProductType } from "@repo/types";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getMockProductById, mockProducts } from "@/lib/mock-data";
+import { getMockProductById, mockProducts } from "@/@lib/mock-data";
 
 const fetchProduct = async (id: string): Promise<ProductType> => {
   // Use mock data instead of fetch
   const product = getMockProductById(id);
-  
+
   if (!product) {
     notFound();
   }
-  
+
   return product;
 
   // const res = await fetch(

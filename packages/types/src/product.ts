@@ -1,4 +1,83 @@
 import z from "zod";
+import { StockStatus } from "./stock";
+
+// ==================== Product 타입 ====================
+/**
+ * 정렬 방향
+ */
+export type SortDirection = "ASC" | "DESC";
+/**
+ * 상품 응답
+ */
+export interface ProductResponse {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  createdAt: string; // ISO 8601 형식의 날짜 문자열
+  categoryIds: number[];
+}
+
+/**
+ * 상품 생성 요청
+ */
+export interface CreateProductRequest {
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  categoryIds: number[];
+}
+
+/**
+ * 상품 수정 요청
+ */
+export interface UpdateProductRequest {
+  name?: string;
+  description?: string;
+  price?: number;
+  stock?: number;
+  categoryIds?: number[];
+}
+
+/**
+ * 주문 상품 요청
+ */
+export interface OrderProductRequest {
+  productId: number;
+  quantity: number;
+}
+
+/**
+ * 주문 상품 응답
+ */
+export interface OrderProductResponse {
+  productId: number;
+  productName: string;
+  quantity: number;
+  orderPrice: number;
+}
+
+/**
+ * 상품 검색 조건
+ */
+export interface SearchProductCond {
+  categoryId?: number;
+  minPrice?: number;
+  maxPrice?: number;
+  productKeyword?: string;
+  stockStatus?: StockStatus;
+}
+
+/**
+ * 상품 정렬 조건
+ */
+export interface SortProductCond {
+  priceSort?: SortDirection;
+  createdAtSort?: SortDirection;
+}
+// ===============================LEGACY========================================
 
 export type ProductType = {
   id: string;
