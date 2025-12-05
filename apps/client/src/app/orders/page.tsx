@@ -1,6 +1,6 @@
 // import { auth } from "@clerk/nextjs/server";
 import { OrderType } from "@repo/types";
-import { mockUserOrders } from "@/lib/mock-data";
+import { mockUserOrders } from "@/@lib/mock-data";
 
 const fetchOrders = async (): Promise<OrderType[]> => {
   // Use mock data instead of fetch
@@ -62,9 +62,8 @@ const OrdersPage = async () => {
                 Products
               </span>
               <p>
-                {order.products
-                  ?.map((product) => product.name)
-                  .join(", ") || "-"}
+                {order.products?.map((product) => product.name).join(", ") ||
+                  "-"}
               </p>
             </div>
           </li>

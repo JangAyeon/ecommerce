@@ -1,5 +1,5 @@
 import z from "zod";
-
+// ===============================LEGACY========================================
 export interface CustomJwtSessionClaims {
   metadata?: {
     role?: "user" | "admin";

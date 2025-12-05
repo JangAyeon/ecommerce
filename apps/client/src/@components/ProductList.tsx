@@ -3,7 +3,7 @@ import Categories from "./Categories";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
 import Filter from "./Filter";
-import { mockProducts } from "@/lib/mock-data";
+import { mockProducts } from "@/@lib/mock-data";
 
 const fetchData = async ({
   category,

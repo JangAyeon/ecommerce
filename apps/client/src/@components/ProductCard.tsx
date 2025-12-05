@@ -1,6 +1,6 @@
 "use client";
 
-import useCartStore from "@/stores/cartStore";
+import useCartStore from "@/@stores/cartStore";
 import { ProductType } from "@repo/types";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
@@ -36,7 +36,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
       selectedSize: productTypes.size,
       selectedColor: productTypes.color,
     });
-    toast.success("Product added to cart")
+    toast.success("Product added to cart");
   };
 
   return (
@@ -45,7 +45,11 @@ const ProductCard = ({ product }: { product: ProductType }) => {
       <Link href={`/products/${product.id}`}>
         <div className="relative aspect-[2/3]">
           <Image
-            src={(product.images as Record<string,string>)?.[productTypes.color] || ""}
+            src={
+              (product.images as Record<string, string>)?.[
+                productTypes.color
+              ] || ""
+            }
             alt={product.name}
             fill
             className="object-cover hover:scale-105 transition-all duration-300"
