@@ -1,0 +1,102 @@
+@import "tailwindcss";
+@theme inline {
+  --font-general-sans: var(--font-general-sans);
+}
+
+/* Headline */
+@utility text-h1-semibold {
+  font-weight: 600;
+  font-size: 6.4rem;
+  line-height: 80%;
+  letter-spacing: -5%;
+}
+@utility text-h2-semibold {
+  font-weight: 600;
+  font-size: 3.2rem;
+  line-height: 100%;
+  letter-spacing: -5%;
+}
+
+@utility text-h3-semibold {
+  font-weight: 600;
+  font-size: 2.4rem;
+  line-height: 120%;
+  letter-spacing: 0%;
+}
+
+@utility text-h4-semibold {
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 120%;
+  letter-spacing: 0%;
+}
+
+@utility text-h4-medium {
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 120%;
+  letter-spacing: 0%;
+}
+
+@utility text-b1-regular {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+@utility text-b1-medium {
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+@utility text-b1-semibold {
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+@utility text-b2-regular {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+@utility text-b2-medium {
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+@utility text-b2-semibold {
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+@utility text-b3-regular {
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+@utility text-b3-medium {
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+@utility text-b3-semibold {
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
