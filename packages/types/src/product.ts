@@ -17,6 +17,7 @@ export interface ProductResponse {
   stock: number;
   createdAt: string; // ISO 8601 형식의 날짜 문자열
   categoryIds: number[];
+  imageUrl: string; // TODO: BE 작업 안됨
 }
 
 /**
