@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^5.2.1",
     "@stripe/react-stripe-js": "^3.6.0",
     "@stripe/stripe-js": "^7.0.0",
+    "gsap": "^3.13.0",
     "lucide-react": "^0.535.0",
     "next": "15.4.8",
     "react": "19.1.0",
@@ -25,9 +26,9 @@
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
+    "@repo/tailwind-config": "workspace:*",
     "@repo/types": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@repo/tailwind-config": "workspace:*",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
