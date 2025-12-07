@@ -61,13 +61,13 @@ const MainPage = () => {
     sections.forEach((section, index) => {
       const title = section.querySelector(".parallax__item__title");
       const num = section.querySelector(".parallax__item__num");
-      const desc = section.querySelector(".parallax__item__desc");
-      const imgWrap = section.querySelector(".parallax__item__imgWrap");
+      // const desc = section.querySelector(".parallax__item__desc");
+      // const imgWrap = section.querySelector(".parallax__item__imgWrap");
       const sectionId = section.getAttribute("id");
 
       // 텍스트 페이드 인
       gsap.fromTo(
-        [title, num, desc],
+        [title, num /* desc*/],
         { opacity: 0, y: 50 },
         {
           opacity: 1,
@@ -84,25 +84,25 @@ const MainPage = () => {
       );
 
       // 이미지 페이드 인
-      if (imgWrap) {
-        gsap.fromTo(
-          imgWrap,
-          { opacity: 0, scale: 0.9, y: 30 },
-          {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 1.2,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 80%",
-              end: "top 50%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
+      // if (imgWrap) {
+      //   gsap.fromTo(
+      //     imgWrap,
+      //     { opacity: 0, scale: 0.9, y: 30 },
+      //     {
+      //       opacity: 1,
+      //       scale: 1,
+      //       y: 0,
+      //       duration: 1.2,
+      //       ease: "power2.out",
+      //       scrollTrigger: {
+      //         trigger: section,
+      //         start: "top 80%",
+      //         end: "top 50%",
+      //         toggleActions: "play none none reverse",
+      //       },
+      //     }
+      //   );
+      // }
 
       // ✅ 현재 섹션 감지 (GSAP 기준)
       if (sectionId) {
@@ -156,7 +156,7 @@ const MainPage = () => {
       console.log(`📍 스크롤 이동: ${targetId}`);
       targetSection.scrollIntoView({
         behavior: "smooth",
-        block: "center",
+        block: "start",
       });
     };
 
@@ -185,12 +185,12 @@ const MainPage = () => {
       ref={containerRef}
       className="relative w-full max-w-none -mx-4 sm:mx-0"
     >
-      <div className="fixed top-0 left-0 right-0 z-10">
+      <div className="fixed top-0 left-0 right-0 z-50">
         <Navbar />
         <Header activeSectionIndex={activeSectionIndex} />
       </div>
 
-      <div className="pt-32">
+      <div className="mt-32">
         <Content />
       </div>
     </div>

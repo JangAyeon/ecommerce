@@ -18,7 +18,7 @@ const Header = ({ activeSectionIndex }: { activeSectionIndex: number }) => {
     <nav
       id="parallax__nav"
       className="
-          z-[1000]
+        relative
         backdrop-blur-[10px] bg-white
         px-4 py-6
         shadow-[0_8px_32px_rgba(0,0,0,0.1)]
