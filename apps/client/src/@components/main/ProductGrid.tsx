@@ -58,3 +58,5 @@ const ProductGrid = ({ products }: ProductGridProps) => {
 };
 
 export default ProductGrid;
+
+
