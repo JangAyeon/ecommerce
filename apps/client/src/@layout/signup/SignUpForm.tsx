@@ -5,12 +5,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Eye, EyeOff } from "lucide-react";
-import FormField from "./FormField";
-import SocialButtons from "./SocialButtons";
-import AddressField from "./AddressField";
+import FormField from "../../@components/signup/inputField/FormField";
+import SocialButtons from "../../@components/signup/social/SocialButtons";
+import AddressField from "../../@components/signup/address/AddressField";
 import { FieldState, SignUpFormInputs, signUpSchema } from "./schema";
-import LegalAgreement from "./LegalAgreement";
-import SwitchLogin from "./SwitchLogin";
+import LegalAgreement from "../../@components/signup/legal/LegalAgreement";
+import SwitchLogin from "../../@components/signup/switch/SwitchLogin";
 
 const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,21 +18,22 @@ const SignUpForm = () => {
     register,
     handleSubmit,
     watch,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     setValue,
     formState: { errors, isValid },
   } = useForm<SignUpFormInputs>({
     resolver: zodResolver(signUpSchema),
     mode: "onChange",
     defaultValues: {
-      address: "",
+      daumPostAddress: "",
+      extraAddress: "",
     },
   });
 
   const fullName = watch("fullName");
   const email = watch("email");
   const password = watch("password");
-  const address = watch("address");
+  const daumPostAddress = watch("daumPostAddress");
+  const extraAddress = watch("extraAddress");
 
   const getFieldState = (
     fieldName: keyof SignUpFormInputs,
@@ -46,21 +47,28 @@ const SignUpForm = () => {
   const fullNameState = getFieldState("fullName", fullName);
   const emailState = getFieldState("email", email);
   const passwordState = getFieldState("password", password);
-  const addressState = getFieldState("address", address);
+  const daumPostAddressState = getFieldState(
+    "daumPostAddress",
+    daumPostAddress
+  );
+  const extraAddressState = getFieldState("extraAddress", extraAddress);
 
-  const handleAddressClick = () => {
-    console.log("Address input button clicked - Open address modal/window");
-    // TODO: Open address modal/window
-    // For now, just set a mock address for testing
-    // setValue("address", "123 Main St, Anytown, NY 10001");
+  const handleDaumPostAddressChange = (daumPostAddress: string) => {
+    setValue("daumPostAddress", daumPostAddress, { shouldValidate: true });
+  };
+
+  const handleExtraAddressChange = (extraAddress: string) => {
+    setValue("extraAddress", extraAddress, { shouldValidate: true });
   };
 
   const onSubmit = (data: SignUpFormInputs) => {
     console.log("Sign up data:", data);
+
+    alert(JSON.stringify(data));
     // TODO: Implement signup logic
   };
 
-  const isFormValid = isValid && fullName && email && password;
+  const isFormValid = isValid && !!fullName && !!email && !!password;
 
   return (
     <div className="w-full max-w-[440px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
@@ -122,10 +130,15 @@ const SignUpForm = () => {
 
         {/* Address Field */}
         <AddressField
-          address={address}
-          state={addressState}
-          error={errors.address?.message}
-          onAddressClick={handleAddressClick}
+          daumPostAddress={daumPostAddress}
+          extraAddress={extraAddress}
+          daumPostAddressState={daumPostAddressState}
+          extraAddressState={extraAddressState}
+          error={
+            errors.daumPostAddress?.message || errors.extraAddress?.message
+          }
+          onDaumPostAddressChange={handleDaumPostAddressChange}
+          onExtraAddressChange={handleExtraAddressChange}
         />
 
         {/* Legal Agreement */}

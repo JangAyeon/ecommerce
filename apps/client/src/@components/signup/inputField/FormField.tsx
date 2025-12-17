@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, AlertCircle } from "lucide-react";
-import { FieldState } from "./schema";
+import { FieldState } from "@layout/signup/schema";
 
 interface FormFieldProps {
   id: string;
