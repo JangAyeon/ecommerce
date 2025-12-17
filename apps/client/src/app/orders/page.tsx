@@ -1,10 +1,10 @@
 // import { auth } from "@clerk/nextjs/server";
 import { OrderType } from "@repo/types";
-import { mockUserOrders } from "@/@lib/mock-data";
+// import { mockUserOrders } from "@/@lib/mock-data";
 
 const fetchOrders = async (): Promise<OrderType[]> => {
   // Use mock data instead of fetch
-  return mockUserOrders;
+  return [];
 
   // const { getToken } = await auth();
   // const token = await getToken();

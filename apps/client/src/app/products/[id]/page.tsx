@@ -2,11 +2,12 @@ import ProductInteraction from "@/@components/ProductInteraction";
 import { ProductType } from "@repo/types";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getMockProductById, mockProducts } from "@/@lib/mock-data";
+import { mockProducts } from "@/@lib/mock-data";
 
 const fetchProduct = async (id: string): Promise<ProductType> => {
   // Use mock data instead of fetch
-  const product = getMockProductById(id);
+  // const product = getMockProductById(id);
+  const product = null;
 
   if (!product) {
     notFound();
@@ -23,7 +24,7 @@ const fetchProduct = async (id: string): Promise<ProductType> => {
 
 export async function generateStaticParams() {
   return mockProducts.map((product) => ({
-    id: product.id,
+    id: String(product.id),
   }));
 }
 
