@@ -13,7 +13,8 @@ export const signUpSchema = z.object({
     .string({ message: "Password is required!" })
     .min(8, { message: "Password must be at least 8 characters!" })
     .max(50),
-  address: z.string().optional(),
+  daumPostAddress: z.string().optional(),
+  extraAddress: z.string().optional(),
 });
 
 export type SignUpFormInputs = z.infer<typeof signUpSchema>;
