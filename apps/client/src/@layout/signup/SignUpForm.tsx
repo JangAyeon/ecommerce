@@ -11,9 +11,12 @@ import AddressField from "../../@components/signup/address/AddressField";
 import { FieldState, SignUpFormInputs, signUpSchema } from "./schema";
 import LegalAgreement from "../../@components/signup/legal/LegalAgreement";
 import SwitchLogin from "../../@components/signup/switch/SwitchLogin";
+import Map from "../../@components/map/Map";
+import MapMarker from "@/@components/map/MapMarker";
 
 const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -128,7 +131,9 @@ const SignUpForm = () => {
           }
         />
 
-        {/* Address Field */}
+        {/* Address & KAKAO MAP */}
+        <Map isVisible={!!daumPostAddress} />
+        <MapMarker isVisible={!!daumPostAddress} />
         <AddressField
           daumPostAddress={daumPostAddress}
           extraAddress={extraAddress}

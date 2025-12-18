@@ -5,6 +5,7 @@ import { MapPin } from "lucide-react";
 import { Address } from "react-daum-postcode";
 import { FieldState } from "@layout/signup/schema";
 import AddressModal from "./AddressModal";
+import { useMapStore } from "@/@stores/mapStore";
 
 interface AddressFieldProps {
   daumPostAddress: string | undefined;
@@ -27,10 +28,53 @@ const AddressField = ({
   onExtraAddressChange,
 }: AddressFieldProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { setLocation } = useMapStore();
+  const getCoordinatesFromAddress = async (
+    address: string
+  ): Promise<kakao.maps.services.GeocoderResult[] | undefined> => {
+    if (!window.kakao?.maps?.services) {
+      console.error("카카오맵이 아직 로드되지 않았습니다.");
+      return;
+    }
 
-  const handleComplete = (data: Address) => {
+    const geocoder = new window.kakao.maps.services.Geocoder();
+
+    try {
+      const result = await new Promise<kakao.maps.services.GeocoderResult[]>(
+        (resolve, reject) => {
+          geocoder.addressSearch(
+            address,
+            (
+              result: kakao.maps.services.GeocoderResult[],
+              status: kakao.maps.services.Status
+            ) => {
+              if (status === window.kakao.maps.services.Status.OK) {
+                resolve(result);
+              } else {
+                reject(new Error(`주소 검색 실패: ${status}`));
+              }
+            }
+          );
+        }
+      );
+
+      console.log("좌표 변환 결과:", JSON.stringify(result));
+      if (!result[0]) {
+        throw new Error("주소 검색 실패: 주소를 찾을 수 없습니다.");
+      }
+      setLocation({
+        lat: parseFloat(result[0].y),
+        lng: parseFloat(result[0].x),
+      });
+      // return result;
+    } catch (error) {
+      console.error("주소 검색 중 오류:", error);
+      return undefined;
+    }
+  };
+  const handleComplete = async (data: Address) => {
     const { address, addressType, bname, buildingName, ...rest } = data;
-
+    const coordinates = await getCoordinatesFromAddress(address);
     let fullAddress = address;
     let extraAddress = "";
 
@@ -43,7 +87,15 @@ const AddressField = ({
 
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
+    const firstResult = coordinates?.[0];
+    const lat = firstResult ? parseFloat(firstResult.y) : undefined;
+    const lng = firstResult ? parseFloat(firstResult.x) : undefined;
+
     console.log("data", {
+      coordinates: {
+        lat,
+        lng,
+      },
       address,
       addressType,
       bname,
