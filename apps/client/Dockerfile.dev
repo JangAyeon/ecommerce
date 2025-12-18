@@ -1,0 +1,28 @@
+# Development Dockerfile for Client App
+FROM node:20-alpine
+
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@9.0.0 --activate
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY turbo.json ./
+COPY packages ./packages
+COPY apps/client/package.json ./apps/client/
+
+# Install all dependencies (including dev dependencies)
+RUN pnpm install --frozen-lockfile
+
+# Copy source code
+COPY apps/client ./apps/client
+
+EXPOSE 3002
+
+ENV PORT=3002
+ENV HOSTNAME="0.0.0.0"
+
+CMD ["pnpm", "--filter", "client", "dev"]
+
