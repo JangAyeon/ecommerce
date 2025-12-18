@@ -1,0 +1,28 @@
+# Development Dockerfile for Admin App
+FROM node:20-alpine
+
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@9.0.0 --activate
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY turbo.json ./
+COPY packages ./packages
+COPY apps/admin/package.json ./apps/admin/
+
+# Install all dependencies (including dev dependencies)
+RUN pnpm install --frozen-lockfile
+
+# Copy source code
+COPY apps/admin ./apps/admin
+
+EXPOSE 3003
+
+ENV PORT=3003
+ENV HOSTNAME="0.0.0.0"
+
+CMD ["pnpm", "--filter", "admin", "dev"]
+
