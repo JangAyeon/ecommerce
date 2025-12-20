@@ -6,6 +6,11 @@ export interface RegisterRequest {
   roleId?: string;
 }
 
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
 export interface RegisterResponse {
   userId: number;
   email: string;
