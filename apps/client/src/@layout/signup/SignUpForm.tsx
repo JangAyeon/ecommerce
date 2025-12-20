@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Eye, EyeOff } from "lucide-react";
 import FormField from "@components/signup/inputField/FormField";
+import PhoneInput from "@components/signup/inputField/PhoneInput";
 import SocialButtons from "@components/signup/social/SocialButtons";
 import AddressField from "@components/signup/address/AddressField";
 import { FieldState, SignUpFormInputs, signUpSchema } from "./schema";
@@ -35,6 +36,7 @@ const SignUpForm = () => {
   const fullName = watch("fullName");
   const email = watch("email");
   const password = watch("password");
+  const phone = watch("phone");
   const daumPostAddress = watch("daumPostAddress");
   const extraAddress = watch("extraAddress");
 
@@ -50,6 +52,7 @@ const SignUpForm = () => {
   const fullNameState = getFieldState("fullName", fullName);
   const emailState = getFieldState("email", email);
   const passwordState = getFieldState("password", password);
+  const phoneState = getFieldState("phone", phone);
   const daumPostAddressState = getFieldState(
     "daumPostAddress",
     daumPostAddress
@@ -64,14 +67,27 @@ const SignUpForm = () => {
     setValue("extraAddress", extraAddress, { shouldValidate: true });
   };
 
+  const handlePhoneChange = (value: string) => {
+    setValue("phone", value, { shouldValidate: true });
+  };
+
   const onSubmit = (data: SignUpFormInputs) => {
+    // 서버로 보낼 때 핸드폰 번호는 숫자만 추출
+    const phoneNumbersOnly = data.phone.replace(/-/g, "");
+
+    const submitData = {
+      ...data,
+      phone: phoneNumbersOnly,
+    };
+
+    console.log("Sign up data:", submitData);
     console.log("Sign up data:", data);
 
     alert(JSON.stringify(data));
     // TODO: Implement signup logic
   };
 
-  const isFormValid = isValid && !!fullName && !!email && !!password;
+  const isFormValid = isValid && !!fullName && !!email && !!password && !!phone;
 
   return (
     <div className="w-full max-w-[440px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
@@ -129,6 +145,16 @@ const SignUpForm = () => {
               )}
             </button>
           }
+        />
+
+        {/* Phone Number Field */}
+        <PhoneInput
+          id="phone"
+          label="Phone Number"
+          state={phoneState}
+          error={errors.phone?.message}
+          value={phone || ""}
+          onChange={handlePhoneChange}
         />
 
         {/* Address & KAKAO MAP */}
