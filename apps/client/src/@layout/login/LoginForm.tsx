@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FormField from "../../@components/signup/inputField/FormField";
-import SocialLoginButtons from "../../@components/login/social/SocialButtons";
+import FormField from "@components/signup/inputField/FormField";
+import SocialLoginButtons from "@components/login/social/SocialButtons";
 import { FieldState, LoginFormInputs, loginSchema } from "./schema";
 import GuestButton from "@/@components/login/guest/guestButton";
 import SignupButton from "@/@components/login/signup/signupButton";
