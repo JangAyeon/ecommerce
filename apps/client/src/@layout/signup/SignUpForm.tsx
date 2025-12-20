@@ -5,14 +5,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Eye, EyeOff } from "lucide-react";
-import FormField from "../../@components/signup/inputField/FormField";
-import SocialButtons from "../../@components/signup/social/SocialButtons";
-import AddressField from "../../@components/signup/address/AddressField";
+import FormField from "@components/signup/inputField/FormField";
+import SocialButtons from "@components/signup/social/SocialButtons";
+import AddressField from "@components/signup/address/AddressField";
 import { FieldState, SignUpFormInputs, signUpSchema } from "./schema";
-import LegalAgreement from "../../@components/signup/legal/LegalAgreement";
-import SwitchLogin from "../../@components/signup/switch/SwitchLogin";
-import Map from "../../@components/map/Map";
-import MapMarker from "@/@components/map/MapMarker";
+import LegalAgreement from "@components/signup/legal/LegalAgreement";
+import SwitchLogin from "@components/signup/switch/SwitchLogin";
+import Map from "@components/map/Map";
+import MapMarker from "@components/map/MapMarker";
 
 const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
