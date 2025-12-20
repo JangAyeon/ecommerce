@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Location, DEFAULT_LOCATION } from "@/@lib/types/map";
+import { Location, DEFAULT_LOCATION } from "@/@types/map/map";
 
 interface MapStore {
   map: kakao.maps.Map | null;
@@ -17,4 +17,3 @@ export const useMapStore = create<MapStore>((set) => ({
       location: { ...state.location, ...location },
     })),
 }));
-
