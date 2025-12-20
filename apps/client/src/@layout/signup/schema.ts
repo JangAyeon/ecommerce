@@ -13,6 +13,11 @@ export const signUpSchema = z.object({
     .string({ message: "Password is required!" })
     .min(8, { message: "Password must be at least 8 characters!" })
     .max(50),
+  phone: z
+    .string({ message: "Phone number is required!" })
+    .regex(/^01[0-9]-?[0-9]{3,4}-?[0-9]{4}$/, {
+      message: "올바른 휴대폰 번호 형식이 아닙니다.",
+    }),
   daumPostAddress: z.string().optional(),
   extraAddress: z.string().optional(),
 });
