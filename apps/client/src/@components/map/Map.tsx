@@ -4,7 +4,7 @@ import Script from "next/script";
 import { useRef } from "react";
 import { LocateFixed } from "lucide-react";
 import { useMapStore } from "@/@stores/mapStore";
-import { DEFAULT_LOCATION } from "@/@lib/types/map";
+import { DEFAULT_LOCATION } from "@/@types/map/map";
 
 declare global {
   interface Window {
