@@ -49,6 +49,7 @@
     "@repo/types": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
+    "@tanstack/react-query-devtools": "5.89.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
