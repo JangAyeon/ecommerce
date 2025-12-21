@@ -53,7 +53,7 @@ const GuestOrderLookupPage = () => {
       // });
 
       // Navigate to order detail page on success
-      router.push(`/guest-order/${data.orderNumber}`);
+      router.push(`/orders/guest/${data.orderNumber}`);
     } catch (error) {
       console.error("Order lookup failed:", error);
       // TODO: Error handling (toast message, etc.)
