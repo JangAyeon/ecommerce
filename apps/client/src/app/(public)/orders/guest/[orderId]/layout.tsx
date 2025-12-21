@@ -1,11 +1,14 @@
 import { LayoutProps } from "@/@types/UI/layout";
 
-interface GuestOrderLayoutProps {
-  children: React.ReactNode;
-  params: { orderId: string };
+interface GuestOrderLayoutProps extends LayoutProps {
+  params: Promise<{ orderId: string }>;
 }
 
-const GuestOrderLayout = ({ children, params }: GuestOrderLayoutProps) => {
+const GuestOrderLayout = async ({
+  children,
+  params,
+}: GuestOrderLayoutProps) => {
+  await params; // Await params even if not used, to satisfy Next.js 15 requirement
   return <div>{children}</div>;
 };
 
