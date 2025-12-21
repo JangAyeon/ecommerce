@@ -5,6 +5,7 @@ import Navbar from "@/@components/Navbar";
 import Footer from "@/@components/Footer";
 import ToastProvider from "@/@components/ToastProvider";
 import QueryProvider from "@/@providers/QueryProvider";
+import { LayoutProps } from "@/@types/UI/layout";
 // import { ClerkProvider } from "@clerk/nextjs";
 
 const generalSans = localFont({
@@ -18,11 +19,7 @@ export const metadata: Metadata = {
   description: "Ayeon is the best place to find the best clothes",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: LayoutProps) {
   return (
     // <ClerkProvider>
     <html lang="en">
