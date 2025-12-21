@@ -1,6 +1,11 @@
 import { LayoutProps } from "@/@types/UI/layout";
 
-const GuestOrderLayout = ({ children }: LayoutProps) => {
+interface GuestOrderLayoutProps {
+  children: React.ReactNode;
+  params: { orderId: string };
+}
+
+const GuestOrderLayout = ({ children, params }: GuestOrderLayoutProps) => {
   return <div>{children}</div>;
 };
 
