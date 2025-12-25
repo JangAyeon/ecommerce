@@ -1,5 +1,11 @@
 import { apiClient } from "@/@lib/api/apiClient";
-import { LoginRequest, RegisterRequest, RegisterResponse } from "./types";
+import {
+  LoginRequest,
+  LoginResponse,
+  RegisterRequest,
+  RegisterResponse,
+  StatusResponse,
+} from "./types";
 import { API_METHOD } from "@/@types/api";
 
 const AUTH_BASE_URL = "/api/auth";
@@ -27,7 +33,7 @@ export const AuthService = {
     };
 
     // TODO: API 실제 봐야 함
-    return apiClient<any>(url, options);
+    return apiClient<LoginResponse>(url, options);
   },
   logout: () => {
     const url = AuthServiceUrl.LOGOUT;
@@ -42,6 +48,6 @@ export const AuthService = {
     const options = {
       method: API_METHOD.GET,
     };
-    return apiClient<void>(url, options);
+    return apiClient<StatusResponse>(url, options);
   },
 };

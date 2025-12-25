@@ -20,14 +20,16 @@ export async function apiClient<T>(
 
   const res = await fetch(reqUrl, reqOptions);
   const data: ApiResponse<T> = await res.json();
+  console.log(reqUrl, reqOptions, data.message, res.headers);
 
-  if (!res.ok || !data.result) {
-    throw new ApiError(
-      res.status,
-      data.error?.errorCode,
-      data.error?.errorMessage
-    );
-  }
+  // TODO: API 구조 통일되면 다시 적용
+  // if (!res.ok || !data.result) {
+  //   throw new ApiError(
+  //     res.status,
+  //     data.error?.errorCode,
+  //     data.error?.errorMessage
+  //   );
+  // }
 
   return data.message;
 }
