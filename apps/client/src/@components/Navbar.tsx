@@ -13,6 +13,7 @@ import ShoppingCartIcon from "./ShoppingCartIcon";
 // } from "@clerk/nextjs";
 import ProfileButton from "./ProfileButton";
 import AuthButton from "./AuthButton";
+import CheckStatusButton from "./status/checkButton";
 
 const Navbar = () => {
   return (
@@ -50,6 +51,7 @@ const Navbar = () => {
         <SignedIn>
           <ProfileButton />
         </SignedIn> */}
+        <CheckStatusButton />
         <AuthButton />
       </div>
     </nav>
