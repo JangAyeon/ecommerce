@@ -47,3 +47,17 @@ export function useLogin() {
     },
   });
 }
+
+export function useStatus() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: AuthService.status,
+    onSuccess: () => {
+      toast.success("Status fetched successfully");
+      qc.invalidateQueries({ queryKey: AUTH_QUERY_KEY.base });
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+}
