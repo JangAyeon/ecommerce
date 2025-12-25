@@ -7,3 +7,4 @@ export default function SignUpLayout({ children }: LayoutProps) {
     </div>
   );
 }
+

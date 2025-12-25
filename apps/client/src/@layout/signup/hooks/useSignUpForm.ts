@@ -2,7 +2,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useRegister } from "@/@service/auth/mutations";
-import { signUpSchema, SignUpFormInputs, FieldState } from "../schema";
+import {
+  signUpSchema,
+  SignUpFormInputs,
+  FieldState,
+} from "@/@layout/signup/schema";
 import { RegisterRequest } from "@/@service/auth/types";
 
 export const useSignUpForm = () => {
@@ -84,7 +88,7 @@ export const useSignUpForm = () => {
     try {
       await registerMutation.mutateAsync(registerData);
       // 성공 시 메인 페이지로 이동
-      router.push("/");
+      router.push("/main");
     } catch (error) {
       // 에러는 mutation의 onError에서 처리됨
       console.error("회원가입 실패:", error);
