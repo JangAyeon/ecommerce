@@ -24,7 +24,7 @@ const AddressModal = ({
       <DialogContent
         showCloseButton={false}
         onOpenAutoFocus={(e) => e.preventDefault()}
-        className="w-[calc(100vw-1rem)] sm:w-[calc(100vw-2rem)] max-w-2xl max-h-[95vh] sm:max-h-[90vh] p-0 rounded-2xl border-0 shadow-2xl bg-background flex flex-col"
+        className="w-[calc(100vw-1rem)]  max-w-2xl max-h-[95vh] sm:max-h-[90vh] p-0 rounded-2xl border-0 shadow-2xl bg-background flex flex-col"
       >
         {/* Header with Close Button */}
         <div className="relative flex items-center justify-end px-4 sm:px-6 pt-4 sm:pt-6 pb-3 flex-shrink-0">

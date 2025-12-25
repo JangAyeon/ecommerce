@@ -1,7 +1,21 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AUTH_QUERY_KEY } from "./queryKey";
 import { AuthService } from "./api";
 import { toast } from "react-toastify";
+
+export function useRegister() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: AuthService.register,
+    onSuccess: () => {
+      toast.success("회원가입이 완료되었습니다!");
+      qc.invalidateQueries({ queryKey: AUTH_QUERY_KEY.base });
+    },
+    onError: (error) => {
+      toast.error(error.message || "회원가입에 실패했습니다.");
+    },
+  });
+}
 
 export function useLogout() {
   const qc = useQueryClient();

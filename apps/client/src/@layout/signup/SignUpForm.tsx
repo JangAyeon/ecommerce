@@ -1,93 +1,38 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-
 import { Eye, EyeOff } from "lucide-react";
 import FormField from "@components/signup/inputField/FormField";
 import PhoneInput from "@components/signup/inputField/PhoneInput";
 import SocialButtons from "@components/signup/social/SocialButtons";
 import AddressField from "@components/signup/address/AddressField";
-import { FieldState, SignUpFormInputs, signUpSchema } from "./schema";
 import LegalAgreement from "@components/signup/legal/LegalAgreement";
 import SwitchLogin from "@components/signup/switch/SwitchLogin";
 import Map from "@components/map/Map";
 import MapMarker from "@components/map/MapMarker";
+import { useSignUpForm } from "./hooks/useSignUpForm";
 
 const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
+  // 모든 폼 로직을 커스텀 훅에서 가져옴
   const {
     register,
     handleSubmit,
-    watch,
-    setValue,
-    formState: { errors, isValid },
-  } = useForm<SignUpFormInputs>({
-    resolver: zodResolver(signUpSchema),
-    mode: "onChange",
-    defaultValues: {
-      daumPostAddress: "",
-      extraAddress: "",
-    },
-  });
-
-  const fullName = watch("fullName");
-  const email = watch("email");
-  const password = watch("password");
-  const phone = watch("phone");
-  const daumPostAddress = watch("daumPostAddress");
-  const extraAddress = watch("extraAddress");
-
-  const getFieldState = (
-    fieldName: keyof SignUpFormInputs,
-    value: string | undefined
-  ): FieldState => {
-    if (!value) return "initial";
-    if (errors[fieldName]) return "error";
-    return "success";
-  };
-
-  const fullNameState = getFieldState("fullName", fullName);
-  const emailState = getFieldState("email", email);
-  const passwordState = getFieldState("password", password);
-  const phoneState = getFieldState("phone", phone);
-  const daumPostAddressState = getFieldState(
-    "daumPostAddress",
-    daumPostAddress
-  );
-  const extraAddressState = getFieldState("extraAddress", extraAddress);
-
-  const handleDaumPostAddressChange = (daumPostAddress: string) => {
-    setValue("daumPostAddress", daumPostAddress, { shouldValidate: true });
-  };
-
-  const handleExtraAddressChange = (extraAddress: string) => {
-    setValue("extraAddress", extraAddress, { shouldValidate: true });
-  };
-
-  const handlePhoneChange = (value: string) => {
-    setValue("phone", value, { shouldValidate: true });
-  };
-
-  const onSubmit = (data: SignUpFormInputs) => {
-    // 서버로 보낼 때 핸드폰 번호는 숫자만 추출
-    const phoneNumbersOnly = data.phone.replace(/-/g, "");
-
-    const submitData = {
-      ...data,
-      phone: phoneNumbersOnly,
-    };
-
-    console.log("Sign up data:", submitData);
-    console.log("Sign up data:", data);
-
-    alert(JSON.stringify(data));
-    // TODO: Implement signup logic
-  };
-
-  const isFormValid = isValid && !!fullName && !!email && !!password && !!phone;
+    errors,
+    isFormValid,
+    isLoading,
+    fullName,
+    email,
+    password,
+    phone,
+    daumPostAddress,
+    extraAddress,
+    fieldStates,
+    handleDaumPostAddressChange,
+    handleExtraAddressChange,
+    handlePhoneChange,
+  } = useSignUpForm();
 
   return (
     <div className="w-full max-w-[440px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
@@ -100,13 +45,13 @@ const SignUpForm = () => {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
         {/* Full Name Field */}
         <FormField
           id="fullName"
           label="Full Name"
           placeholder="Enter your full name"
-          state={fullNameState}
+          state={fieldStates.fullName}
           error={errors.fullName?.message}
           register={register("fullName")}
         />
@@ -117,7 +62,7 @@ const SignUpForm = () => {
           label="Email"
           type="email"
           placeholder="Enter your email address"
-          state={emailState}
+          state={fieldStates.email}
           error={errors.email?.message}
           register={register("email")}
         />
@@ -128,7 +73,7 @@ const SignUpForm = () => {
           label="Password"
           type={showPassword ? "text" : "password"}
           placeholder="Enter your password"
-          state={passwordState}
+          state={fieldStates.password}
           error={errors.password?.message}
           register={register("password")}
           rightElement={
@@ -151,7 +96,7 @@ const SignUpForm = () => {
         <PhoneInput
           id="phone"
           label="Phone Number"
-          state={phoneState}
+          state={fieldStates.phone}
           error={errors.phone?.message}
           value={phone || ""}
           onChange={handlePhoneChange}
@@ -163,8 +108,8 @@ const SignUpForm = () => {
         <AddressField
           daumPostAddress={daumPostAddress}
           extraAddress={extraAddress}
-          daumPostAddressState={daumPostAddressState}
-          extraAddressState={extraAddressState}
+          daumPostAddressState={fieldStates.daumPostAddress}
+          extraAddressState={fieldStates.extraAddress}
           error={
             errors.daumPostAddress?.message || errors.extraAddress?.message
           }
@@ -178,16 +123,16 @@ const SignUpForm = () => {
         {/* Create Account Button */}
         <button
           type="submit"
-          disabled={!isFormValid}
+          disabled={!isFormValid || isLoading}
           className={`w-full py-3 px-4 rounded-lg text-b2-semibold transition-all duration-200
             ${
-              isFormValid
+              isFormValid && !isLoading
                 ? "bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
                 : "bg-muted text-muted-foreground cursor-not-allowed"
             }
           `}
         >
-          Create an Account
+          {isLoading ? "Creating Account..." : "Create an Account"}
         </button>
       </form>
 
