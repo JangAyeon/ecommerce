@@ -12,7 +12,7 @@ declare global {
   }
 }
 
-const NEXT_PUBLIC_KAKAO_MAP_CLIENT = "17f9d619fec0e389ba9d0371f16da37b";
+// const NEXT_PUBLIC_KAKAO_MAP_CLIENT = "17f9d619fec0e389ba9d0371f16da37b";
 
 interface MapProps {
   isVisible?: boolean;
@@ -54,7 +54,7 @@ export default function Map({ isVisible = true }: MapProps) {
     <>
       <Script
         strategy="afterInteractive"
-        src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${NEXT_PUBLIC_KAKAO_MAP_CLIENT}&autoload=false&libraries=services,clusterer`}
+        src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_TOKEN}&autoload=false&libraries=services,clusterer`}
         onReady={initMap}
       />
       <div className={`relative w-full `}>
